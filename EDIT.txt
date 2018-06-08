@@ -1,0 +1,25 @@
+!*********************************
+!	Matrix Set Up [A][X]=[B]
+!*********************************
+		
+	DO I=1,2*X
+
+!	IF (I==1) 					BX(I)=MX0(J)
+	IF (MOD(I,2)==0)			BX(I)=MX1(I,J)
+	IF (MOD(I,2)/=0)			BX(I)=CX1(I+1,J)
+
+	END DO
+
+	DO I=1,2*X
+
+	IF (MOD(I,2)/=0)			AX(I,I)=B1(I+1,J)
+	IF (MOD(I,2)/=0)			AX(I,I+1)=C1(I+1,J)
+	IF (MOD(I,2)/=0 .and. I/=1)	AX(I,I-1)=A1(I+1,J)
+
+	IF (MOD(I,2)==0 .and. I/=2)	AX(I,I-2)=D1(I,J)
+	IF (MOD(I,2)==0)			AX(I,I-1)=E1(I,J)
+	IF (MOD(I,2)==0)			AX(I,I)=F1(I,J)
+	IF (MOD(I,2)==0 .and. I<2*X)AX(I,I+1)=G1(I,J)
+	IF (MOD(I,2)==0 .and. I<2*X)AX(I,I+2)=H1(I,J)
+
+	END DO
